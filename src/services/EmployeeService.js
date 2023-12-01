@@ -1,4 +1,5 @@
 const Emmployee = require('../models/Employee');
+const Passport = require('../models/Passport');
 
 exports.create = async (body) => {
   const createdEmmployee = await Emmployee.create(body);
@@ -11,7 +12,9 @@ exports.delete = async (employeeId) => {
 }
 
 exports.findAll = async () => {
-  const employees = await Emmployee.findAll();
+  const employees = await Emmployee.findAll({
+    include: Passport
+  });
   return employees;
 }
 

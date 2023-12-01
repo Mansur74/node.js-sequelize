@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const sequelize = require('./config/db');
 const app = express();
 const EmployeeRoute =  require('./routes/EmployeeRoute');
+const PassportRoute =  require('./routes/PassportRoute');
 const {relate} = require('./models/index')
 
 app.use(express.json());
@@ -27,7 +28,8 @@ const start = async () => {
   }
 }
 
-// student route
-app.use("/api/student", EmployeeRoute);
+
+app.use("/api/employee", EmployeeRoute); // employee route
+app.use("/api/passport", PassportRoute); // passport route
 
 start();
