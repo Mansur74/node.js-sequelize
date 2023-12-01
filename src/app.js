@@ -1,7 +1,9 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const sequelize = require('./config');
+const sequelize = require('./config/db');
 const app = express();
+const EmployeeRoute =  require('./routes/EmployeeRoute');
+const {relate} = require('./models/index')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -13,6 +15,7 @@ const PORT = process.env.PORT | 3000;
 
 const start = async () => {
   try {
+    relate();
     await sequelize.sync();
     app.listen(PORT, () => {
       console.log("Listening port:", PORT);
@@ -20,10 +23,11 @@ const start = async () => {
 
   }
   catch (error) {
-    console(error.message)
+    console.log(error.message)
   }
 }
 
-app.use("/api/student", require('./routes/StudentRoute'));
+// student route
+app.use("/api/student", EmployeeRoute);
 
-start()
+start();

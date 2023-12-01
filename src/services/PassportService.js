@@ -1,0 +1,1 @@
+const Passport = require('../models/Passport');
