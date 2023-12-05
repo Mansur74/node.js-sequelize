@@ -10,6 +10,17 @@ router.get('/', async (req, res) => {
   catch (error) {
     res.status(200).json(e.message);
   }
+});
+
+router.get('/:id', async (req, res) => {
+  try {
+    const {id: passportId} = req.params;
+    const passport = await PassportService.findById(passportId);
+    res.status(201).json(passport);
+  } 
+  catch (e) {
+    res.status(200).json(e.message);
+  }
 })
 
 router.post('/:id', async (req, res) => {
@@ -22,6 +33,6 @@ router.post('/:id', async (req, res) => {
   catch (e) {
     res.status(200).json(e.message);
   }
-})
+});
 
 module.exports = router;
