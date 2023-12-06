@@ -6,11 +6,6 @@ exports.create = async (body) => {
   return createdEmmployee;
 }
 
-exports.delete = async (employeeId) => {
-  const deletedCount = await Emmployee.destroy(employeeId);
-  return deletedCount;
-}
-
 exports.findAll = async () => {
   const employees = await Emmployee.findAll({
     include: Passport
@@ -19,6 +14,11 @@ exports.findAll = async () => {
 }
 
 exports.findById = async (employeeId) => {
-  const employee = await Emmployee.findOne({where: {id: employeeId}});
+  const employee = await Emmployee.findOne({where: {id: employeeId}, include: Passport});
   return employee;
+}
+
+exports.delete = async (employeeId) => {
+  const deletedCount = await Emmployee.destroy({where: {id: employeeId}});
+  return deletedCount;
 }

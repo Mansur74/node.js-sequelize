@@ -9,13 +9,17 @@ const Country = sequelize.define('Country', {
     primaryKey: true
   },
   countryName: {
-    type: DataTypes.BIGINT,
+    type: DataTypes.STRING,
     allowNull: false
   },
-  validDate: {
-    type: DataTypes.DATE,
+  capitalCity: {
+    type: DataTypes.STRING,
     allowNull: false
   },
+  population: {
+    type: DataTypes.DOUBLE,
+    allowNull: false
+  }
 })
 
 module.exports = Country

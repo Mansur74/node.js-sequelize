@@ -2,8 +2,9 @@ const express = require("express");
 const dotenv = require("dotenv");
 const sequelize = require('./config/db');
 const app = express();
-const EmployeeRoute =  require('./routes/EmployeeRoute');
-const PassportRoute =  require('./routes/PassportRoute');
+const EmployeeRoute = require('./routes/EmployeeRoute');
+const PassportRoute = require('./routes/PassportRoute');
+const CountryRoute = require('./routes/CountryRoute');
 const {relate} = require('./models/index')
 
 app.use(express.json());
@@ -31,5 +32,6 @@ const start = async () => {
 
 app.use("/api/employee", EmployeeRoute); // employee route
 app.use("/api/passport", PassportRoute); // passport route
+app.use("/api/country", CountryRoute); // passport route
 
 start();
