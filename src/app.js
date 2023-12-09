@@ -6,9 +6,11 @@ const EmployeeRoute = require('./routes/EmployeeRoute');
 const PassportRoute = require('./routes/PassportRoute');
 const CountryRoute = require('./routes/CountryRoute');
 const {relate} = require('./models/index')
+const cors = require('cors');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors())
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
