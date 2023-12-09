@@ -19,7 +19,28 @@ const Employee = sequelize.define('Employee', {
   age: {
     type: DataTypes.INTEGER,
     allowNull: false
-  }
+  },
+  hiringDate: {
+    type: DataTypes.DATE,
+    allowNull: false
+  },
+  department: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  salary: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  description: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  imgURL: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  
 })
 
 module.exports = Employee
