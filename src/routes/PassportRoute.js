@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
     const passports = await PassportService.findAll();
     res.status(200).json(passports);
   } 
-  catch (error) {
+  catch (e) {
     res.status(400).json({message: e.message});
   }
 });

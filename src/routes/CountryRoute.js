@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
     const countries = await CountryService.findAll();
     res.status(200).json(countries);
   } 
-  catch (error) {
+  catch (e) {
     res.status(400).json({message: e.message});
   }
 });

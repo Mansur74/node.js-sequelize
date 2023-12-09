@@ -10,7 +10,8 @@ exports.relate = () => {
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true
-    }
+    },
+    as: "passport"
   });
   Passport.belongsTo(Employee, {
     foreignKey: {
@@ -18,10 +19,11 @@ exports.relate = () => {
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true
-    }
+    },
+    as: "employee"
   });
 
-  Passport.belongsToMany(Country, { through: 'PassportCountry', foreignKey: 'passportId'});
-  Country.belongsToMany(Passport, { through: 'PassportCountry', foreignKey: 'countryId'});
+  Passport.belongsToMany(Country, { through: 'PassportCountry', foreignKey: 'passportId', as: "countries"});
+  Country.belongsToMany(Passport, { through: 'PassportCountry', foreignKey: 'countryId', as: "passports"});
 
 }

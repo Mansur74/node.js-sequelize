@@ -10,11 +10,12 @@ exports.findAll = () => {
   const countries = Country.findAll({
     include: [{
       model: Passport,
+      as: "passports",
       through: {
         attributes: []
       }
-    }]
-  });
+    },
+  ]});
   return countries;
 }
 

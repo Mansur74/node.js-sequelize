@@ -8,13 +8,22 @@ exports.create = async (body) => {
 
 exports.findAll = async () => {
   const employees = await Emmployee.findAll({
-    include: Passport
+    include: {
+      model: Passport,
+      as: "passport"
+    },
   });
   return employees;
 }
 
 exports.findById = async (employeeId) => {
-  const employee = await Emmployee.findOne({where: {id: employeeId}, include: Passport});
+  const employee = await Emmployee.findOne({
+    where: {id: employeeId},
+    include: {
+      model: Passport,
+      as: "passport"
+    }
+  });
   return employee;
 }
 

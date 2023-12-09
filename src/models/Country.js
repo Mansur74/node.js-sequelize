@@ -19,6 +19,10 @@ const Country = sequelize.define('Country', {
   population: {
     type: DataTypes.DOUBLE,
     allowNull: false
+  },
+  imgURL: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
 })
 
