@@ -44,6 +44,16 @@ exports.create = async (passport, countries, employeeId) => {
   return createdPassport;
 }
 
+exports.update = async (body, countries, passportId) => {
+  const passport = await Passport.findOne({where: {id: passportId}});
+  passport.id = body.id;
+  passport.passportNumber = body.passportNumber;
+  passport.validDate = body.validDate;
+  passport.setCountries(countries);  
+  passport.save()
+  return passport;
+}
+
 exports.delete = async (passportId) => {
   const deletedCount = await Passport.destroy({ where: { id: passportId } });
   return deletedCount;

@@ -24,8 +24,8 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try{
-    const {id : studentId} = req.params;
-    const emmployee = await EmployeeService.findById(studentId);
+    const {id : employeeId} = req.params;
+    const emmployee = await EmployeeService.findById(employeeId);
     res.status(200).json(emmployee);
   }
   catch(e){
@@ -35,9 +35,20 @@ router.get('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   try {
-    const {id : studentId} = req.params;
-    const deletedCount = await EmployeeService.delete(studentId);
+    const {id : employeeId} = req.params;
+    const deletedCount = await EmployeeService.delete(employeeId);
     res.status(200).json({deletedCount: deletedCount});
+  } 
+  catch (e) {
+    res.status(400).json({message: e.message});
+  }
+})
+
+router.patch('/:id', async (req, res) => {
+  try {
+    const {id : employeeId} = req.params;
+    const updatedEmployee = await EmployeeService.update(employeeId, req.body);
+    res.status(200).json(updatedEmployee);
   } 
   catch (e) {
     res.status(400).json({message: e.message});

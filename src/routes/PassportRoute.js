@@ -46,4 +46,16 @@ router.post('/:id', async (req, res) => {
   }
 });
 
+router.patch('/:id', async (req, res) => {
+  try {
+    const {countries, ...passport} = req.body;
+    const {id: passportId} = req.params;
+    const updatedPassport = await PassportService.update(passport, countries, passportId);
+    res.status(200).json(updatedPassport);
+  } 
+  catch (e) {
+    res.status(400).json({message: e.message});
+  }
+});
+
 module.exports = router;

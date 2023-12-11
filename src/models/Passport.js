@@ -4,7 +4,7 @@ const sequelize = require('../config/db');
 const Passport = sequelize.define('Passport', {
   id: {
     type: DataTypes.INTEGER,
-    autoIncrement: true,
+    autoIncrement: false,
     allowNull: false,
     primaryKey: true
   },

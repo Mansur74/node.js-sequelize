@@ -1,13 +1,13 @@
-const Emmployee = require('../models/Employee');
+const Employee = require('../models/Employee');
 const Passport = require('../models/Passport');
 
 exports.create = async (body) => {
-  const createdEmmployee = await Emmployee.create(body);
+  const createdEmmployee = await Employee.create(body);
   return createdEmmployee;
 }
 
 exports.findAll = async () => {
-  const employees = await Emmployee.findAll({
+  const employees = await Employee.findAll({
     include: {
       model: Passport,
       as: "passport"
@@ -17,7 +17,7 @@ exports.findAll = async () => {
 }
 
 exports.findById = async (employeeId) => {
-  const employee = await Emmployee.findOne({
+  const employee = await Employee.findOne({
     where: {id: employeeId},
     include: {
       model: Passport,
@@ -28,6 +28,21 @@ exports.findById = async (employeeId) => {
 }
 
 exports.delete = async (employeeId) => {
-  const deletedCount = await Emmployee.destroy({where: {id: employeeId}});
+  const deletedCount = await Employee.destroy({where: {id: employeeId}});
   return deletedCount;
+}
+
+exports.update = async(employeeId, body) => {
+  const employee = await Employee.findOne({where: {id: employeeId}});
+  employee.firstName = body.firstName;
+  employee.lastName = body.lastName;
+  employee.age = body.age;
+  employee.hiringDate = body.hiringDate;
+  employee.department = body.department;
+  employee.salary = body.salary;
+  employee.description = body.description;
+  employee.imgURL = body.imgURL;
+  employee.save();
+
+  return employee;
 }
