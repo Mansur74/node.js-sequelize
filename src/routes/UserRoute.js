@@ -5,7 +5,7 @@ const UserService = require("../services/UserService");
 router.post('/sign-up', async (req, res) => {
   try {
     const user = req.body;
-    //const result = await UserService.signUp(user);
+    const result = await UserService.signUp(user);
     res.status(201).json({message: result});
   } 
   catch (e) {
