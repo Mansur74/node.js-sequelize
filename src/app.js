@@ -5,6 +5,7 @@ const app = express();
 const EmployeeRoute = require('./routes/EmployeeRoute');
 const PassportRoute = require('./routes/PassportRoute');
 const CountryRoute = require('./routes/CountryRoute');
+const UserRoute = require('./routes/UserRoute');
 const {relate} = require('./models/index')
 const cors = require('cors');
 
@@ -34,6 +35,7 @@ const start = async () => {
 
 app.use("/api/employee", EmployeeRoute); // employee route
 app.use("/api/passport", PassportRoute); // passport route
-app.use("/api/country", CountryRoute); // passport route
+app.use("/api/country", CountryRoute); // country route
+app.use("/api/user", UserRoute); // user route
 
 start();
