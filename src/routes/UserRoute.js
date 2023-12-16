@@ -17,7 +17,7 @@ router.post('/sign-in', async (req, res) => {
   try {
     const user = req.body;
     const result = await UserService.signInWithEmail(user);
-    res.status(200).json({accessToken: result});
+    res.status(200).json(result);
   } 
   catch (e) {
     res.status(400).json({message: e.message});

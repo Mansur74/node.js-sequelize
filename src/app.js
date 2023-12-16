@@ -16,7 +16,7 @@ app.use(cors())
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
 }
-const PORT = process.env.PORT | 3000;
+const PORT = process.env.PORT | 8080;
 
 const start = async () => {
   try {

@@ -27,7 +27,7 @@ exports.signInWithEmail = async (body) => {
     expiresIn: parseInt(process.env.JWT_REFRESH_EXPIRATION)
   });
   
-  return token;
+  return {...user.dataValues, accessToken: token};
 
 }
 
