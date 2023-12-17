@@ -13,11 +13,12 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
-  try{
-    const emmployees = await EmployeeService.findAll();
+  try {
+    const {page, size} = req.query;
+    const emmployees = await EmployeeService.findAndCountAll(parseInt(page), parseInt(size));
     res.status(200).json(emmployees);
-  }
-  catch(e){
+  } 
+  catch (e) {
     res.status(400).json({message: e.message});
   }
 })

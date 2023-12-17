@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "start": "npx nodemon"
+    "start": "npx nodemon",
+    "dev": "nodemon -L main"
   },
   "author": "",
   "license": "ISC",

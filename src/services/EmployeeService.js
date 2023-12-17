@@ -16,6 +16,19 @@ exports.findAll = async () => {
   return employees;
 }
 
+exports.findAndCountAll = async (page, size) => {
+  const employees = await Employee.findAndCountAll({
+    limit: size,
+    offset: page * size,
+    include: {
+      model: Passport,
+      as: "passport"
+    },
+  });
+  return employees;
+}
+
+
 exports.findById = async (employeeId) => {
   const employee = await Employee.findOne({
     where: {id: employeeId},

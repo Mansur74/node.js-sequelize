@@ -2,9 +2,9 @@ const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize({
   username: "sa",
-  password: "#Deneme123",
+  password: "deneme123",
   database: "EmployeeDB",
-  host: "db",
+  host: "localhost",
   dialect: 'mssql',
   port: 1433
 });
