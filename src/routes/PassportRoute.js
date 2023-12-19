@@ -16,7 +16,7 @@ router.get('/:id', async (req, res) => {
   try {
     const {id: passportId} = req.params;
     const passport = await PassportService.findById(passportId);
-    res.status(201).json(passport);
+    res.status(200).json(passport);
   } 
   catch (e) {
     res.status(400).json({message: e.message});

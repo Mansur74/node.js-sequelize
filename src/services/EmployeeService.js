@@ -1,5 +1,6 @@
 const Employee = require('../models/Employee');
 const Passport = require('../models/Passport');
+const Country = require('../models/Country');
 
 exports.create = async (body) => {
   const createdEmmployee = await Employee.create(body);
@@ -34,7 +35,12 @@ exports.findById = async (employeeId) => {
     where: {id: employeeId},
     include: {
       model: Passport,
-      as: "passport"
+      as: "passport",
+      include: {
+        model: Country,
+        as: "countries",
+        through: { attributes: [] }
+      }
     }
   });
   return employee;
