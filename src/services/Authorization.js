@@ -4,11 +4,6 @@ const bcrypt = require("bcryptjs");
 
 let refreshTokens = [];
 
-exports.getUserById = async (userId) => {
-  const user = await User.findOne({where: {id: userId}});
-  return { success: false, data: user, message: null, status: 200 };
-}
-
 exports.signUp = async (body) => {
   const existingUser = await User.findOne({where: {email: body.email}});
   if(existingUser)

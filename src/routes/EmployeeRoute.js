@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const EmployeeService = require('../services/EmployeeService');
+const Authorization = require("../services/Authorization");
 
-router.post('/', async (req, res) => {
+router.post('/', Authorization.authorization, async (req, res) => {
   try {
     const emmployee = await EmployeeService.create(req.body);
     res.status(201).json(emmployee);
@@ -12,7 +13,7 @@ router.post('/', async (req, res) => {
   }
 })
 
-router.get('/', async (req, res) => {
+router.get('/', Authorization.authorization, async (req, res) => {
   try {
     const {page, size} = req.query;
     const emmployees = await EmployeeService.findAndCountAll(parseInt(page), parseInt(size));
@@ -23,7 +24,7 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', Authorization.authorization, async (req, res) => {
   try{
     const {id : employeeId} = req.params;
     const emmployee = await EmployeeService.findById(employeeId);
@@ -34,7 +35,7 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', Authorization.authorization, async (req, res) => {
   try {
     const {id : employeeId} = req.params;
     const deletedCount = await EmployeeService.delete(employeeId);
@@ -45,7 +46,7 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', Authorization.authorization, async (req, res) => {
   try {
     const {id : employeeId} = req.params;
     const updatedEmployee = await EmployeeService.update(employeeId, req.body);

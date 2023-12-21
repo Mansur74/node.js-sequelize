@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router();
 const PassportService = require('../services/PassportService')
+const Authorization = require("../services/Authorization");
 
-router.get('/', async (req, res) => {
+router.get('/', Authorization.authorization, async (req, res) => {
   try {
     const passports = await PassportService.findAll();
     res.status(200).json(passports);
@@ -12,7 +13,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', Authorization.authorization, async (req, res) => {
   try {
     const {id: passportId} = req.params;
     const passport = await PassportService.findById(passportId);
@@ -23,7 +24,7 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', Authorization.authorization, async (req, res) => {
   try {
     const {id: passportId} = req.params;
     const deletedCount = await PassportService.delete(passportId);
@@ -34,7 +35,7 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-router.post('/:id', async (req, res) => {
+router.post('/:id', Authorization.authorization, async (req, res) => {
   try {
     const {countries, ...passport} = req.body;
     const {id: employeeId} = req.params;
@@ -46,7 +47,7 @@ router.post('/:id', async (req, res) => {
   }
 });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', Authorization.authorization, async (req, res) => {
   try {
     const {countries, ...passport} = req.body;
     const {id: passportId} = req.params;

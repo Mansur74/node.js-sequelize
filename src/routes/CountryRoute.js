@@ -1,8 +1,9 @@
 const CountryService = require('../services/CountryService');
+const Authorization = require("../services/Authorization");
 const express = require('express');
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/', Authorization.authorization, async (req, res) => {
   try {
     const country = req.body;
     const createdCountry = await CountryService.create(country);
@@ -13,7 +14,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
+router.get('/', Authorization.authorization, async (req, res) => {
   try {
     const countries = await CountryService.findAll();
     res.status(200).json(countries);
@@ -23,7 +24,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', Authorization.authorization, async (req, res) => {
   try {
     const {id: countryId} = req.params;
     const country = await CountryService.findById(countryId);
@@ -34,7 +35,7 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', Authorization.authorization, async (req, res) => {
   try {
     const {id: countryId} = req.params;
     const deletedCount = await CountryService.delete(countryId);
